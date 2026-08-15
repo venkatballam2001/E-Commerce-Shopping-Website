@@ -30,12 +30,19 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
+    // Directly wipe all session data from browser storage
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('wishlist');
+    localStorage.removeItem('shippingAddress');
+    
+    // Dispatch Redux cleanup
     dispatch(logout());
     dispatch(clearCart());
     dispatch(clearWishlist());
-    setIsUserMenuOpen(false);
-    setIsMobileMenuOpen(false);
-    navigate('/login');
+    
+    // Force full page reload to reset all in-memory state
+    window.location.href = '/login';
   };
 
   return (
