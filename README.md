@@ -1,8 +1,6 @@
 # AuraStore — Full-Stack MERN E-Commerce Platform
 
-![AuraStore Project Showcase](project-banner.png)
-
-A production-ready, secure, responsive full-stack e-commerce web application built using the **MERN Stack** (MongoDB, Express.js, React, Node.js), Redux Toolkit, Tailwind CSS, PhonePe UPI QR payment processing, and visual analytics.
+A production-ready, secure, responsive full-stack e-commerce web application built using the **MERN Stack** (MongoDB, Express.js, React, Node.js), Redux Toolkit, Tailwind CSS, Stripe/Razorpay payment processing, and visual analytics.
 
 ---
 

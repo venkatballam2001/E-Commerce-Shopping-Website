@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ShoppingBag, Heart, User, Search, Menu, X, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
 import { logout } from '../store/authSlice';
+import { clearCart } from '../store/cartSlice';
+import { clearWishlist } from '../store/wishlistSlice';
 import { setFilter } from '../store/productSlice';
 
 const Navbar = () => {
@@ -29,7 +31,10 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(clearCart());
+    dispatch(clearWishlist());
     setIsUserMenuOpen(false);
+    setIsMobileMenuOpen(false);
     navigate('/login');
   };
 

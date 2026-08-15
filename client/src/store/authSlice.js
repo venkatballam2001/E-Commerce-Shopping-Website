@@ -190,6 +190,9 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       localStorage.removeItem('userInfo');
+      localStorage.removeItem('cartItems');
+      localStorage.removeItem('wishlist');
+      localStorage.removeItem('shippingAddress');
       state.userInfo = null;
       state.usersList = [];
       state.error = null;
