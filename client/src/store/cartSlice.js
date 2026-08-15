@@ -1,13 +1,23 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const cartItemsFromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
-  : [];
+let cartItemsFromStorage = [];
+try {
+  cartItemsFromStorage = localStorage.getItem('cartItems')
+    ? JSON.parse(localStorage.getItem('cartItems'))
+    : [];
+} catch (e) {
+  cartItemsFromStorage = [];
+}
 
-const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
-  ? JSON.parse(localStorage.getItem('shippingAddress'))
-  : {};
+let shippingAddressFromStorage = {};
+try {
+  shippingAddressFromStorage = localStorage.getItem('shippingAddress')
+    ? JSON.parse(localStorage.getItem('shippingAddress'))
+    : {};
+} catch (e) {
+  shippingAddressFromStorage = {};
+}
 
 const initialState = {
   cartItems: cartItemsFromStorage,

@@ -120,14 +120,14 @@ const productSlice = createSlice({
       .addCase(fetchProducts.pending, (state) => { state.loading = true; state.error = null; })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
-        state.products = action.payload.products;
-        state.pages = action.payload.pages;
-        state.totalProducts = action.payload.totalProducts;
+        state.products = Array.isArray(action.payload?.products) ? action.payload.products : [];
+        state.pages = action.payload?.pages || 1;
+        state.totalProducts = action.payload?.totalProducts || 0;
       })
-      .addCase(fetchProducts.rejected, (state, action) => { state.loading = false; state.error = action.payload; })
+      .addCase(fetchProducts.rejected, (state, action) => { state.loading = false; state.error = action.payload; state.products = []; })
       // Featured Products
       .addCase(fetchFeaturedProducts.fulfilled, (state, action) => {
-        state.featuredProducts = action.payload;
+        state.featuredProducts = Array.isArray(action.payload) ? action.payload : [];
       })
       // Detail
       .addCase(fetchProductById.pending, (state) => { state.detailLoading = true; state.productDetail = null; })
@@ -138,13 +138,13 @@ const productSlice = createSlice({
       .addCase(fetchProductById.rejected, (state, action) => { state.detailLoading = false; state.error = action.payload; })
       // Categories
       .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.categories = action.payload;
+        state.categories = Array.isArray(action.payload) ? action.payload : [];
       })
       // Reviews
       .addCase(fetchProductReviews.pending, (state) => { state.reviewsLoading = true; })
       .addCase(fetchProductReviews.fulfilled, (state, action) => {
         state.reviewsLoading = false;
-        state.reviews = action.payload;
+        state.reviews = Array.isArray(action.payload) ? action.payload : [];
       })
       .addCase(createReview.fulfilled, (state, action) => {
         state.reviews.unshift(action.payload.review);

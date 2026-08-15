@@ -107,7 +107,7 @@ const HomePage = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((cat) => (
+          {(categories || []).map((cat) => (
             <Link
               key={cat._id}
               to={`/shop?category=${cat._id}`}
@@ -153,7 +153,7 @@ const HomePage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {featuredProducts.slice(0, 4).map((product) => (
+            {(featuredProducts || []).slice(0, 4).map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
           </div>
