@@ -191,8 +191,11 @@ const authSlice = createSlice({
     logout: (state) => {
       localStorage.removeItem('userInfo');
       localStorage.removeItem('cartItems');
+      localStorage.removeItem('cartItems_guest');
       localStorage.removeItem('wishlist');
+      localStorage.removeItem('wishlist_guest');
       localStorage.removeItem('shippingAddress');
+      localStorage.removeItem('shippingAddress_guest');
       state.userInfo = null;
       state.usersList = [];
       state.error = null;
