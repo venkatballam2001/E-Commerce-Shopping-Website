@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logout } from './authSlice';
 
 let wishlistFromStorage = [];
 try {
@@ -35,6 +36,12 @@ const wishlistSlice = createSlice({
       state.items = [];
       localStorage.removeItem('wishlist');
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(logout, (state) => {
+      state.items = [];
+      localStorage.removeItem('wishlist');
+    });
   }
 });
 

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { logout } from './authSlice';
 
 let cartItemsFromStorage = [];
 try {
@@ -91,6 +92,15 @@ const cartSlice = createSlice({
       .addCase(applyCoupon.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      // Clear cart when user logs out
+      .addCase(logout, (state) => {
+        state.cartItems = [];
+        state.coupon = null;
+        state.couponDiscount = 0;
+        state.shippingAddress = {};
+        localStorage.removeItem('cartItems');
+        localStorage.removeItem('shippingAddress');
       });
   }
 });
